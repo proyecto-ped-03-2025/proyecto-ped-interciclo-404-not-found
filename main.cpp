@@ -48,7 +48,7 @@ public:
 
     void mostrar() {
         if (estaVacia()) {
-            cout << "No hay jugadores inscritos." << endl;
+            cout << "No hay jugadores inscritos en el sistema aun." << endl;
             return;
         }
 

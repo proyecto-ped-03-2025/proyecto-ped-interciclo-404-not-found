@@ -9,7 +9,6 @@ struct Jugador {
 class ListaCircular {
 private:
     Jugador* cabeza;
-
 public:
     ListaCircular() {
         cabeza = nullptr;

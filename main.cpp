@@ -74,7 +74,7 @@ public:
 
         return contador;
     }
-
+    
     Jugador* getCabeza() {
         return cabeza;
     }
@@ -107,7 +107,6 @@ void mostrarIntegrantes() {
 }
 
 int main() {
-
     ListaCircular lista;
     int opcion;
     char nombre[50];
@@ -156,7 +155,6 @@ int main() {
                 cout << "Opcion invalida." << endl;
         }
 
-        
     } while(opcion != 0);
 
     return 0;

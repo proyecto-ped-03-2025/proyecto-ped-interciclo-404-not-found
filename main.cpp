@@ -13,7 +13,7 @@ public:
     ListaCircular() {
         cabeza = nullptr;
     }
-
+    
     bool estaVacia() {
         return cabeza == nullptr;
     }

@@ -13,6 +13,7 @@ public:
     ListaCircular() {
         cabeza = nullptr;
     }
+
     bool estaVacia() {
         return cabeza == nullptr;
     }
@@ -40,7 +41,6 @@ public:
             temp->siguiente = nuevo;
             nuevo->siguiente = cabeza;
         }
-
         cout << "Jugador inscrito correctamente en el sistema." << endl;
     }
 
@@ -58,6 +58,7 @@ public:
                  << " | Puntaje: " << temp->puntaje << endl;
             temp = temp->siguiente;
         } while (temp != cabeza);
+        
     }
 
     int cantidadJugadores() {

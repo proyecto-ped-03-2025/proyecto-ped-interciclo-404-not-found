@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
 struct Jugador {
     char nombre[50];
     int puntaje;

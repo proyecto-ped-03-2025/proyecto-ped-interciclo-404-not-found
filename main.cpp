@@ -43,7 +43,7 @@ public:
             nuevo->siguiente = cabeza;
         }
 
-        cout << "Jugador inscrito correctamente." << endl;
+        cout << "Jugador inscrito correctamente en el sistema." << endl;
     }
 
     void mostrar() {

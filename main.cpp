@@ -58,7 +58,7 @@ public:
                  << " | Puntaje: " << temp->puntaje << endl;
             temp = temp->siguiente;
         } while (temp != cabeza);
-        
+
     }
 
     int cantidadJugadores() {
@@ -118,9 +118,8 @@ int main() {
         cin.ignore();
 
         switch(opcion) {
-
             case 1:
-                cout << "Ingrese nombre del jugador: ";
+                cout << "Ingrese nombre del jugador:";
                 cin.getline(nombre, 50);
                 lista.insertar(nombre);
                 break;
@@ -157,6 +156,7 @@ int main() {
                 cout << "Opcion invalida." << endl;
         }
 
+        
     } while(opcion != 0);
 
     return 0;

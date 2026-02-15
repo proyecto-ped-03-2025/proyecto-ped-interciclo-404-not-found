@@ -116,7 +116,7 @@ Jugador *ListaCircular::getCabeza()
 
 void mostrarMenu()
 {
-    cout << "===== TORNEO PIEDRA PAPEL O TIJERA =====" << endl;
+    cout << "\n===== TORNEO PIEDRA PAPEL O TIJERA =====" << endl;
     cout << "1. Inscribir jugador" << endl;
     cout << "2. Mostrar jugadores" << endl;
     cout << "3. Iniciar torneo" << endl;
@@ -176,7 +176,7 @@ int ListaCircular::pedirJugada(char nombre[])
 {
     int opcion;
 
-    cout << "\nPlayer: " << nombre << "elige\n";
+    cout << "\nPlayer: " << nombre << " elige\n";
     escribirLento("1. Piedra\n");
     escribirLento("2. Papel\n");
     escribirLento("3. Tijera\n");
@@ -366,6 +366,60 @@ void ListaCircular::mostrarCombate(const char *nombre1, int player1, const char 
     }
 }
 
+void ListaCircular::iniciarTorneo()
+{
+    if (cantidadJugadores() < 2)
+    {
+        cout << "Se necesitan minimo 2 jugadores\n";
+        return;
+    }
+
+    Jugador *player1 = cabeza;
+
+    do
+    {
+        Jugador *player2 = player1->siguiente;
+
+        while (player2 != cabeza)
+        {
+            int jugada1 = pedirJugada(player1->nombre);
+            int jugada2 = pedirJugada(player2->nombre);
+
+            mostrarCombate(player1->nombre, jugada1, player2->nombre, jugada2);
+
+            int resultado = pvp(jugada1, jugada2);
+
+            if (resultado == 0)
+            {
+                escribirLento("Empate\n");
+                player1->puntaje += 1;
+                player2->puntaje += 1;
+            }
+            else if (resultado == 1)
+            {
+                escribirLento("Gana ");
+                escribirLento(player1->nombre);
+                cout << endl;
+                player1->puntaje += 3;
+            }
+            else
+            {
+                escribirLento("Gana ");
+                escribirLento(player2->nombre);
+                cout << endl;
+                player2->puntaje += 3;
+            }
+
+            player2 = player2->siguiente;
+        }
+
+        player1 = player1->siguiente;
+
+    } while (player1->siguiente != cabeza);
+
+    escribirLento("\nTorneo finalizado.\n");
+}
+
 void ListaCircular::menuPrincipal()
 {
     int opcion;
@@ -383,38 +437,50 @@ void ListaCircular::menuPrincipal()
             cout << "Ingrese nombre del jugador: ";
             cin.getline(nombre, 50);
             insertar(nombre);
+            cout << endl;
             break;
 
         case 2:
+
             mostrar();
+            cout << endl;
             break;
 
         case 3:
+
             if (cantidadJugadores() < 2)
             {
                 cout << "Se necesitan minimo 2 jugadores." << endl;
             }
             else
             {
-                cout << "Funcion torneo pendiente en otra rama." << endl;
+                iniciarTorneo();
             }
+            cout << endl;
             break;
 
         case 4:
+
             cout << "Funcion ganador pendiente en otra rama." << endl;
+            cout << endl;
             break;
 
         case 5:
+
             mostrarAyuda();
+            cout << endl;
             break;
 
         case 6:
             mostrarIntegrantes();
+            cout << endl;
             break;
 
         case 0:
+
             liberarMemoria();
             cout << "Saliendo..." << endl;
+            cout << endl;
             break;
 
         default:

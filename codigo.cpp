@@ -20,6 +20,7 @@ public:
     void mostrar();
     int cantidadJugadores();
     Jugador *getCabeza();
+    void menuPrincipal(); 
 };
 
 ListaCircular::ListaCircular()
@@ -135,9 +136,8 @@ void mostrarIntegrantes()
     cout << "Nombre Companero - Carnet" << endl;
 }
 
-int main()
+void ListaCircular::menuPrincipal()
 {
-    ListaCircular lista;
     int opcion;
     char nombre[50];
 
@@ -152,15 +152,15 @@ int main()
         case 1:
             cout << "Ingrese nombre del jugador:";
             cin.getline(nombre, 50);
-            lista.insertar(nombre);
+            insertar(nombre);
             break;
 
         case 2:
-            lista.mostrar();
+            mostrar();
             break;
 
         case 3:
-            if (lista.cantidadJugadores() < 2)
+            if (cantidadJugadores() < 2)
             {
                 cout << "Se necesitan minimo 2 jugadores." << endl;
             }
@@ -191,6 +191,11 @@ int main()
         }
 
     } while (opcion != 0);
+}
 
+int main()
+{
+    ListaCircular lista;
+    lista.menuPrincipal();
     return 0;
 }

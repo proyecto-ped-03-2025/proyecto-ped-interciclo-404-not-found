@@ -20,7 +20,8 @@ public:
     void mostrar();
     int cantidadJugadores();
     Jugador *getCabeza();
-    void menuPrincipal(); 
+    void menuPrincipal();
+    void liberarMemoria();
 };
 
 ListaCircular::ListaCircular()
@@ -132,8 +133,28 @@ void mostrarAyuda()
 void mostrarIntegrantes()
 {
     cout << "\n--- INTEGRANTES ---" << endl;
-    cout << "Tu Nombre - Carnet" << endl;
-    cout << "Nombre Companero - Carnet" << endl;
+    cout << "MILTON GUILLERMO RIVAS PALACIOS - 00019725" << endl;
+    cout << "FERNANDO JOSE RIVAS HENRIQUEZ - 00154325" << endl;
+}
+
+void ListaCircular::liberarMemoria()
+{
+    if (estaVacia())
+    {
+        return;
+    }
+    Jugador *actual = cabeza->siguiente;
+    Jugador *aux;
+
+    while (actual != cabeza)
+    {
+        aux = actual;
+        actual = actual->siguiente;
+        delete aux;
+    }
+
+    delete cabeza;
+    cabeza = nullptr;
 }
 
 void ListaCircular::menuPrincipal()
@@ -150,7 +171,7 @@ void ListaCircular::menuPrincipal()
         switch (opcion)
         {
         case 1:
-            cout << "Ingrese nombre del jugador:";
+            cout << "Ingrese nombre del jugador: ";
             cin.getline(nombre, 50);
             insertar(nombre);
             break;
@@ -183,6 +204,7 @@ void ListaCircular::menuPrincipal()
             break;
 
         case 0:
+            liberarMemoria();
             cout << "Saliendo..." << endl;
             break;
 

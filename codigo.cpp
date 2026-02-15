@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 using namespace std;
 
 struct Jugador
@@ -22,6 +23,7 @@ public:
     Jugador *getCabeza();
     void menuPrincipal();
     void liberarMemoria();
+    void escribirLento(const char texto[]);
 };
 
 ListaCircular::ListaCircular()
@@ -155,6 +157,15 @@ void ListaCircular::liberarMemoria()
 
     delete cabeza;
     cabeza = nullptr;
+}
+
+void ListaCircular::escribirLento(const char texto[])
+{
+    for (int i = 0; texto[i] != '\0'; i++)
+    {
+        cout << texto[i];
+        Sleep(50);
+    }
 }
 
 void ListaCircular::menuPrincipal()

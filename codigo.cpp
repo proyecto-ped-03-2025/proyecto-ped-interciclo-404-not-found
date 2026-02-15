@@ -28,6 +28,7 @@ public:
     int pvp(int player1, int player2);
     void mostrarCombate(const char *nombre1, int player1, const char *nombre2, int player2);
     void iniciarTorneo();
+    void reportarGanador();
 };
 
 ListaCircular::ListaCircular()
@@ -420,6 +421,30 @@ void ListaCircular::iniciarTorneo()
     escribirLento("\nTorneo finalizado.\n");
 }
 
+void ListaCircular::reportarGanador()
+{
+    if (estaVacia())
+    {
+        cout << "No hay jugadores inscritos.\n";
+        return;
+    }
+
+    Jugador* aux = cabeza;
+    Jugador* ganador = cabeza;
+
+    do
+    {
+        if (aux->puntaje > ganador->puntaje)
+            ganador = aux;
+
+        aux = aux->siguiente;
+
+    } while (aux != cabeza);
+
+    cout << "\n=== ||GANADOR DEL TORNEO|| ===\n";
+    cout << "Jugador: " << ganador->nombre << " | Puntaje: " << ganador->puntaje << endl;
+}
+
 void ListaCircular::menuPrincipal()
 {
     int opcion;
@@ -461,7 +486,7 @@ void ListaCircular::menuPrincipal()
 
         case 4:
 
-            cout << "Funcion ganador pendiente en otra rama." << endl;
+            reportarGanador();
             cout << endl;
             break;
 

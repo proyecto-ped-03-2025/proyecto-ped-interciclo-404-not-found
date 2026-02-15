@@ -24,6 +24,9 @@ public:
     void menuPrincipal();
     void liberarMemoria();
     void escribirLento(const char texto[]);
+    int pedirJugada(char nombre[]);
+    int resolverDuelo(int player1, int player2);
+    void iniciarTorneo();
 };
 
 ListaCircular::ListaCircular()
@@ -167,6 +170,27 @@ void ListaCircular::escribirLento(const char texto[])
         Sleep(50);
     }
 }
+
+int ListaCircular::pedirJugada(char nombre[])
+{
+    int opcion;
+
+    cout << "\nPlayer: " << nombre << "elige\n";
+    escribirLento("1. Piedra\n");
+    escribirLento("2. Papel\n");
+    escribirLento("3. Tijera\n");
+    cout << "opcion: ";
+    cin >> opcion;
+
+    if (opcion < 1 || opcion > 3)
+    {
+        cout <<"ingresa una opcion correcta\n";
+        return pedirJugada(nombre); 
+    }
+
+    return opcion;
+}
+
 
 void ListaCircular::menuPrincipal()
 {

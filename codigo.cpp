@@ -25,8 +25,8 @@ public:
     void liberarMemoria();
     void escribirLento(const char texto[]);
     int pedirJugada(char nombre[]);
-    int resolverDuelo(int player1, int player2);
-    void iniciarTorneo();
+    int pvp(int player1, int player2);
+    void Torneo();
 };
 
 ListaCircular::ListaCircular()
@@ -184,13 +184,30 @@ int ListaCircular::pedirJugada(char nombre[])
 
     if (opcion < 1 || opcion > 3)
     {
-        cout <<"ingresa una opcion correcta\n";
-        return pedirJugada(nombre); 
+        cout << "ingresa una opcion correcta\n";
+        return pedirJugada(nombre);
     }
 
     return opcion;
 }
 
+int ListaCircular::pvp(int player1, int player2)
+{
+    if (player1 == player2)
+        return 0;
+
+    switch (player1)
+    {
+    case 1:
+        return (player2 == 3) ? 1 : 2; 
+    case 2:
+        return (player2 == 1) ? 1 : 2; 
+    case 3:
+        return (player2 == 2) ? 1 : 2; 
+    }
+
+    return 0;
+}
 
 void ListaCircular::menuPrincipal()
 {

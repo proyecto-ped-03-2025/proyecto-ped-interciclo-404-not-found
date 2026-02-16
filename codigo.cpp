@@ -375,6 +375,14 @@ void ListaCircular::iniciarTorneo()
         return;
     }
 
+    Jugador *aux = cabeza;
+
+    do
+    {
+        aux->puntaje = 0;
+        aux = aux->siguiente;
+    } while (aux != cabeza);
+
     Jugador *player1 = cabeza;
 
     do
@@ -429,8 +437,27 @@ void ListaCircular::reportarGanador()
         return;
     }
 
-    Jugador* aux = cabeza;
-    Jugador* ganador = cabeza;
+    Jugador *aux = cabeza;
+    bool todosCero = true;
+
+    do
+    {
+        if (aux->puntaje != 0)
+        {
+            todosCero = false;
+            break;
+        }
+        aux = aux->siguiente;
+    } while (aux != cabeza);
+
+    if (todosCero)
+    {
+        cout << "aun no se ha jugado el torneo\n";
+        return;
+    }
+
+    aux = cabeza;
+    Jugador *ganador = cabeza;
 
     do
     {
